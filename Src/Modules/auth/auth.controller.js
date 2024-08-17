@@ -1,10 +1,12 @@
 import UserModel from "../../../DB/models/User.model.js";
 import bcrypt from "bcryptjs/dist/bcrypt.js";
 import jwt from 'jsonwebtoken'
+//import { registerSchema } from "./auth.validation.js";
 
 export const register =async(req,res)=>{
    try{
    const {userName,email,password}=req.body;
+ 
    const user =await UserModel.findOne({email});
    if(user){
     return res.status(409).json({message:"email already exists"});
