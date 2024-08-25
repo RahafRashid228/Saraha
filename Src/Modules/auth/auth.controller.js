@@ -50,3 +50,11 @@ export const login=async(req,res)=>{
 
     return res.status(200).json({message:"success",token});
 }
+
+export const allusers= async(req,res)=>{
+    try{
+    const users=await UserModel .find().select('UserName');
+    return res.status(200).json({message:'success',users});
+ }catch(error){
+    return res.status(500).json({message:"catch error",error:error.stack});
+ }}
