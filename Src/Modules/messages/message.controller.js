@@ -16,8 +16,8 @@ export const sendMessage= async(req,res)=>{
      }
     
      export const getMessage= async(req,res)=>{
-        try{
-            const {token}= req.headers;
+        
+            const {token}= req.body;
         const decoded =jwt.verify(token,process.env.LOGINSIGNITURE);
         if(!decoded){
             return res.ststus(400).json({message:"invalid token"});
@@ -26,8 +26,6 @@ export const sendMessage= async(req,res)=>{
         const messages= await messageModel.find({receiverId:req.id});
         return res.status(200).json({message:"success",messages});
         }
-        catch(error){
-            return res.status(500).json({message:"catch error",error:error.stack});
-        }
-     }
+        
+     
      

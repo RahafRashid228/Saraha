@@ -5,7 +5,7 @@ import {sendEmail} from '../../utils/sendEmail.js';
 //import { registerSchema } from "./auth.validation.js";
 
 export const register =async(req,res)=>{
-   try{
+   
    const {userName,email,password}=req.body;
  
    const user =await UserModel.findOne({email});
@@ -26,10 +26,7 @@ export const register =async(req,res)=>{
    
    
     return res.status(201).json({ message:"user created successfully"});}
-    catch(err){
-        return res.status(500).json({ message:"catch error",error:err.stack});
-    }
-}
+    
 
 export const login=async(req,res)=>{
     const {email,password}=req.body;
@@ -52,9 +49,7 @@ export const login=async(req,res)=>{
 }
 
 export const allusers= async(req,res)=>{
-    try{
+    
     const users=await UserModel .find().select('UserName');
     return res.status(200).json({message:'success',users});
- }catch(error){
-    return res.status(500).json({message:"catch error",error:error.stack});
- }}
+ }
